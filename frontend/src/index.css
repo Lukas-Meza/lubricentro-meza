@@ -305,6 +305,23 @@
     color: color-mix(in oklab, var(--color-mist) 60%, transparent);
   }
 
+  .field-input--error {
+    border-color: #c45c5c;
+  }
+
+  .field-error {
+    margin-top: 0.3rem;
+    font-size: 0.75rem;
+    color: #f0a0a0;
+  }
+
+  .field-hint {
+    margin-top: 0.25rem;
+    font-size: 0.7rem;
+    color: color-mix(in oklab, var(--color-mist) 75%, transparent);
+    text-align: right;
+  }
+
   /* Cards & media */
   .card {
     display: flex;

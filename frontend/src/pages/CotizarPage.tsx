@@ -5,7 +5,12 @@ import { PageHero } from '../components/PageHero';
 import { EmptyState } from '../components/States';
 import { useQuote } from '../hooks/useQuote';
 import { useSite } from '../hooks/useSite';
-import { formatClp } from '../utils/format';
+import { formatClp, cn } from '../utils/format';
+import {
+  QUOTE_LIMITS,
+  validateQuoteForm,
+  type QuoteFormErrors,
+} from '../utils/quoteForm';
 import { buildQuoteWhatsappMessage, whatsappUrl } from '../utils/whatsapp';
 
 // Flujo principal de cotizacion: abre WhatsApp con el resumen listo
@@ -13,6 +18,7 @@ export function CotizarPage() {
   const { items, updateQuantity, remove, clear } = useQuote();
   const { site } = useSite();
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<QuoteFormErrors>({});
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -31,6 +37,16 @@ export function CotizarPage() {
       }, 0),
     [items],
   );
+
+  const formValues = {
+    name,
+    phone,
+    email,
+    vehicleMake,
+    vehicleModel,
+    vehicleYear,
+    message,
+  };
 
   const whatsappText = useMemo(
     () =>
@@ -58,16 +74,31 @@ export function CotizarPage() {
     ],
   );
 
+  const clearFieldError = (key: keyof QuoteFormErrors) => {
+    setFieldErrors((prev) => {
+      if (!prev[key]) return prev;
+      const next = { ...prev };
+      delete next[key];
+      return next;
+    });
+  };
+
   const openWhatsappQuote = () => {
     if (items.length === 0) {
       setError('Agrega al menos un servicio o producto.');
+      setFieldErrors({});
       return;
     }
-    if (!name.trim() || !phone.trim()) {
-      setError('Completa tu nombre y teléfono para enviar la cotización.');
+
+    const errors = validateQuoteForm(formValues);
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setError('Revisa los campos marcados antes de enviar.');
       return;
     }
+
     setError(null);
+    setFieldErrors({});
     // SITE_WHATSAPP es el numero del taller; el del cliente va en el texto
     const url = whatsappUrl(site.whatsapp, whatsappText);
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -162,7 +193,7 @@ export function CotizarPage() {
           )}
         </div>
 
-        <form onSubmit={onSubmit} className="panel bg-ink">
+        <form onSubmit={onSubmit} className="panel bg-ink" noValidate>
           <h2 className="heading-card">Tus datos</h2>
           <p className="copy-muted mt-2 text-sm">
             Al enviar se abre WhatsApp con el listado de productos/servicios y precios para
@@ -174,65 +205,162 @@ export function CotizarPage() {
               <input
                 required
                 value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="field-input"
+                maxLength={QUOTE_LIMITS.name.max}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  clearFieldError('name');
+                }}
+                className={cn('field-input', fieldErrors.name && 'field-input--error')}
+                autoComplete="name"
               />
+              {fieldErrors.name ? (
+                <p className="field-error">{fieldErrors.name}</p>
+              ) : (
+                <p className="field-hint">
+                  {name.trim().length}/{QUOTE_LIMITS.name.max}
+                </p>
+              )}
             </label>
             <label className="field">
               Teléfono / WhatsApp
               <input
                 required
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                maxLength={QUOTE_LIMITS.phone.max}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                  clearFieldError('phone');
+                }}
                 placeholder="+56 9 ..."
-                className="field-input"
+                className={cn('field-input', fieldErrors.phone && 'field-input--error')}
+                autoComplete="tel"
+                inputMode="tel"
               />
+              {fieldErrors.phone ? (
+                <p className="field-error">{fieldErrors.phone}</p>
+              ) : (
+                <p className="field-hint">
+                  {phone.trim().length}/{QUOTE_LIMITS.phone.max}
+                </p>
+              )}
             </label>
             <label className="field">
               Correo (opcional)
               <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="field-input"
+                maxLength={QUOTE_LIMITS.email.max}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  clearFieldError('email');
+                }}
+                className={cn('field-input', fieldErrors.email && 'field-input--error')}
+                autoComplete="email"
               />
+              {fieldErrors.email ? (
+                <p className="field-error">{fieldErrors.email}</p>
+              ) : (
+                <p className="field-hint">
+                  {email.trim().length}/{QUOTE_LIMITS.email.max}
+                </p>
+              )}
             </label>
             <div className="form-vehicle">
               <label className="field">
                 Marca
                 <input
                   value={vehicleMake}
-                  onChange={(e) => setVehicleMake(e.target.value)}
-                  className="field-input"
+                  maxLength={QUOTE_LIMITS.vehicleMake.max}
+                  onChange={(e) => {
+                    setVehicleMake(e.target.value);
+                    clearFieldError('vehicleMake');
+                  }}
+                  className={cn(
+                    'field-input',
+                    fieldErrors.vehicleMake && 'field-input--error',
+                  )}
+                  placeholder="Toyota"
+                  autoComplete="off"
                 />
+                {fieldErrors.vehicleMake ? (
+                  <p className="field-error">{fieldErrors.vehicleMake}</p>
+                ) : (
+                  <p className="field-hint">
+                    {vehicleMake.trim().length}/{QUOTE_LIMITS.vehicleMake.max}
+                  </p>
+                )}
               </label>
               <label className="field">
                 Modelo
                 <input
                   value={vehicleModel}
-                  onChange={(e) => setVehicleModel(e.target.value)}
-                  className="field-input"
+                  maxLength={QUOTE_LIMITS.vehicleModel.max}
+                  onChange={(e) => {
+                    setVehicleModel(e.target.value);
+                    clearFieldError('vehicleModel');
+                  }}
+                  className={cn(
+                    'field-input',
+                    fieldErrors.vehicleModel && 'field-input--error',
+                  )}
+                  placeholder="Corolla"
+                  autoComplete="off"
                 />
+                {fieldErrors.vehicleModel ? (
+                  <p className="field-error">{fieldErrors.vehicleModel}</p>
+                ) : (
+                  <p className="field-hint">
+                    {vehicleModel.trim().length}/{QUOTE_LIMITS.vehicleModel.max}
+                  </p>
+                )}
               </label>
               <label className="field">
                 Año
                 <input
                   inputMode="numeric"
                   value={vehicleYear}
-                  onChange={(e) => setVehicleYear(e.target.value)}
-                  className="field-input"
+                  maxLength={4}
+                  onChange={(e) => {
+                    // Solo digitos, maximo 4
+                    setVehicleYear(e.target.value.replace(/\D/g, '').slice(0, 4));
+                    clearFieldError('vehicleYear');
+                  }}
+                  className={cn(
+                    'field-input',
+                    fieldErrors.vehicleYear && 'field-input--error',
+                  )}
+                  placeholder={`${QUOTE_LIMITS.vehicleYear.min}–${QUOTE_LIMITS.vehicleYear.max}`}
+                  autoComplete="off"
                 />
+                {fieldErrors.vehicleYear ? (
+                  <p className="field-error">{fieldErrors.vehicleYear}</p>
+                ) : (
+                  <p className="field-hint">
+                    {QUOTE_LIMITS.vehicleYear.min}–{QUOTE_LIMITS.vehicleYear.max}
+                  </p>
+                )}
               </label>
             </div>
             <label className="field">
               Comentario
               <textarea
                 value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                maxLength={QUOTE_LIMITS.message.max}
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                  clearFieldError('message');
+                }}
                 rows={3}
-                className="field-input"
+                className={cn('field-input', fieldErrors.message && 'field-input--error')}
                 placeholder="Kilometraje, patente o lo que debamos saber."
               />
+              {fieldErrors.message ? (
+                <p className="field-error">{fieldErrors.message}</p>
+              ) : (
+                <p className="field-hint">
+                  {message.trim().length}/{QUOTE_LIMITS.message.max}
+                </p>
+              )}
             </label>
           </div>
           {error ? <p className="mt-3 text-sm text-red-400">{error}</p> : null}

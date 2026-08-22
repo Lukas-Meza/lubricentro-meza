@@ -14,10 +14,15 @@ export const quotesRouter = Router();
 const quoteSchema = z.object({
   name: z.string().min(2).max(80),
   phone: z.string().min(8).max(20),
-  email: z.string().email().optional().or(z.literal('')),
+  email: z.string().email().max(120).optional().or(z.literal('')),
   vehicleMake: z.string().max(40).optional(),
   vehicleModel: z.string().max(40).optional(),
-  vehicleYear: z.coerce.number().int().min(1985).max(new Date().getFullYear() + 1).optional(),
+  vehicleYear: z.coerce
+    .number()
+    .int()
+    .min(1985)
+    .max(new Date().getFullYear() + 1)
+    .optional(),
   message: z.string().max(800).optional(),
   items: z
     .array(
