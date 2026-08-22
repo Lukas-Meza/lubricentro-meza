@@ -6,4 +6,4 @@ npm install
 npm run dev
 ```
 
-Escucha en `http://127.0.0.1:43121/api`.
+Escucha en `http://127.0.0.1:3000/api`.

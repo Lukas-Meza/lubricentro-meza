@@ -24,7 +24,7 @@ npm run dev
 
 La primera vez crea `backend/data/lubricentro.sqlite` y carga el catálogo.
 
-API: http://127.0.0.1:43121/api
+API: http://127.0.0.1:3000/api
 
 ### 2. Frontend (otra terminal)
 
@@ -35,7 +35,7 @@ npm install
 npm run dev
 ```
 
-Sitio: http://127.0.0.1:43122
+Sitio: http://127.0.0.1:5173
 
 ### Contacto / WhatsApp
 

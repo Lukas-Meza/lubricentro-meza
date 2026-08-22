@@ -15,8 +15,8 @@ const sqlitePath = resolve(
 mkdirSync(dirname(sqlitePath), { recursive: true });
 
 export const appConfig = {
-  port: Number(env('PORT', '43121')),
-  frontendUrl: env('FRONTEND_URL', 'http://127.0.0.1:43122'),
+  port: Number(env('PORT', '3000')),
+  frontendUrl: env('FRONTEND_URL', 'http://127.0.0.1:5173'),
   sqlitePath,
   site: {
     name: env('SITE_NAME', 'Lubricentro Meza'),
