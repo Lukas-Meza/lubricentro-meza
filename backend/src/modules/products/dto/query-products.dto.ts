@@ -1,6 +1,6 @@
 import { IsBoolean, IsEnum, IsOptional, IsString } from 'class-validator';
 import { Transform } from 'class-transformer';
-import { ProductCategory } from '@prisma/client';
+import { ProductCategory } from '../../../common/enums';
 
 export class QueryProductsDto {
   @IsOptional()

@@ -1,3 +1,3 @@
-API REST de Lubricentro Meza (NestJS + Prisma + PostgreSQL).
+API local de Lubricentro Meza (NestJS + TypeORM + SQLite).
 
-Ver el README de la raíz del repositorio para instalación, variables de entorno y rutas.
+Ver el README de la raíz: `npm install` y `npm run start:dev`.

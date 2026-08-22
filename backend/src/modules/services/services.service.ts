@@ -1,43 +1,46 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Prisma, ServiceCategory } from '@prisma/client';
-import { PrismaService } from '../../database/prisma.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { FindOptionsWhere, Like, Repository } from 'typeorm';
+import { ServiceCategory } from '../../common/enums';
 import { QueryServicesDto } from './dto/query-services.dto';
+import { Service } from './entities/service.entity';
 
 @Injectable()
 export class ServicesService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    @InjectRepository(Service)
+    private readonly services: Repository<Service>,
+  ) {}
 
   async findAll(query: QueryServicesDto) {
-    const where: Prisma.ServiceWhereInput = {};
+    const where: FindOptionsWhere<Service>[] = [];
+    const base: FindOptionsWhere<Service> = {};
 
     if (query.category) {
-      where.category = query.category;
+      base.category = query.category;
     }
 
     if (query.featured !== undefined) {
-      where.featured = query.featured;
+      base.featured = query.featured;
     }
 
     if (query.q) {
-      where.OR = [
-        { name: { contains: query.q, mode: 'insensitive' } },
-        { shortDescription: { contains: query.q, mode: 'insensitive' } },
-      ];
+      where.push({ ...base, name: Like(`%${query.q}%`) });
+      where.push({ ...base, shortDescription: Like(`%${query.q}%`) });
+    } else {
+      where.push(base);
     }
 
-    const [data, total] = await this.prisma.$transaction([
-      this.prisma.service.findMany({
-        where,
-        orderBy: [{ featured: 'desc' }, { name: 'asc' }],
-      }),
-      this.prisma.service.count({ where }),
-    ]);
+    const [data, total] = await this.services.findAndCount({
+      where,
+      order: { featured: 'DESC', name: 'ASC' },
+    });
 
     return { data, meta: { total } };
   }
 
   async findBySlug(slug: string) {
-    const service = await this.prisma.service.findUnique({ where: { slug } });
+    const service = await this.services.findOne({ where: { slug } });
     if (!service) {
       throw new NotFoundException('Servicio no encontrado');
     }

@@ -1,53 +1,56 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Prisma, ProductCategory } from '@prisma/client';
-import { PrismaService } from '../../database/prisma.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { FindOptionsWhere, Like, Repository } from 'typeorm';
+import { ProductCategory } from '../../common/enums';
 import { QueryProductsDto } from './dto/query-products.dto';
+import { Product } from './entities/product.entity';
 
 @Injectable()
 export class ProductsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    @InjectRepository(Product)
+    private readonly products: Repository<Product>,
+  ) {}
 
   async findAll(query: QueryProductsDto) {
-    const where: Prisma.ProductWhereInput = {};
+    const where: FindOptionsWhere<Product>[] = [];
+    const base: FindOptionsWhere<Product> = {};
 
     if (query.category) {
-      where.category = query.category;
+      base.category = query.category;
     }
 
     if (query.featured !== undefined) {
-      where.featured = query.featured;
+      base.featured = query.featured;
     }
 
     if (query.inStock !== undefined) {
-      where.inStock = query.inStock;
+      base.inStock = query.inStock;
     }
 
     if (query.brand) {
-      where.brand = { equals: query.brand, mode: 'insensitive' };
+      base.brand = Like(query.brand);
     }
 
     if (query.q) {
-      where.OR = [
-        { name: { contains: query.q, mode: 'insensitive' } },
-        { brand: { contains: query.q, mode: 'insensitive' } },
-        { shortDescription: { contains: query.q, mode: 'insensitive' } },
-        { sku: { contains: query.q, mode: 'insensitive' } },
-      ];
+      where.push({ ...base, name: Like(`%${query.q}%`) });
+      where.push({ ...base, brand: Like(`%${query.q}%`) });
+      where.push({ ...base, shortDescription: Like(`%${query.q}%`) });
+      where.push({ ...base, sku: Like(`%${query.q}%`) });
+    } else {
+      where.push(base);
     }
 
-    const [data, total] = await this.prisma.$transaction([
-      this.prisma.product.findMany({
-        where,
-        orderBy: [{ featured: 'desc' }, { category: 'asc' }, { name: 'asc' }],
-      }),
-      this.prisma.product.count({ where }),
-    ]);
+    const [data, total] = await this.products.findAndCount({
+      where,
+      order: { featured: 'DESC', category: 'ASC', name: 'ASC' },
+    });
 
     return { data, meta: { total } };
   }
 
   async findBySlug(slug: string) {
-    const product = await this.prisma.product.findUnique({ where: { slug } });
+    const product = await this.products.findOne({ where: { slug } });
     if (!product) {
       throw new NotFoundException('Producto no encontrado');
     }

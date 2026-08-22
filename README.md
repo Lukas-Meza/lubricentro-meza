@@ -1,85 +1,65 @@
 # Lubricentro Meza
 
-Sitio web y API del centro automotriz **Lubricentro Meza**: lubricación, mantenimiento de nivel 2, venta de neumáticos y repuestos. El usuario consulta el catálogo, arma una selección y solicita cotización (web o WhatsApp). No incluye carrito ni pagos.
+Sitio web del centro automotriz **Lubricentro Meza** (lubricación, nivel 2, neumáticos y repuestos). El usuario ve el catálogo, arma una selección y pide cotización por el formulario o WhatsApp. **No hay carrito ni pagos.**
+
+Pensado para correr **100% en local** (sin Docker ni PostgreSQL). La base de datos es un archivo SQLite que se crea solo.
 
 ## Estructura
 
 ```
-frontend/   React + TypeScript + Vite + Tailwind CSS
-backend/    NestJS + Prisma + PostgreSQL
+frontend/   React + TypeScript + Vite + Tailwind
+backend/    NestJS + TypeORM + SQLite
 ```
 
 ## Requisitos
 
-- Node.js 22+
-- PostgreSQL 16 (local o Docker)
+- Node.js 20+ (recomendado 22)
 
-## Configuración
+## Cómo ejecutarlo en local
 
-### Base de datos
-
-Con Docker:
-
-```bash
-docker compose up -d
-```
-
-O crea una base `lubricentro_meza` y un usuario con los datos de `backend/.env.example`.
-
-Copia variables:
-
-```bash
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env
-```
-
-Edita en `backend/.env` el teléfono, WhatsApp (`SITE_WHATSAPP` sin + ni espacios, ej. `56987654321`), correo y dirección.
-
-### Backend
+### 1. Backend
 
 ```bash
 cd backend
+cp .env.example .env
 npm install
-npm run prisma:generate
-npm run prisma:push
-npm run prisma:seed
 npm run start:dev
 ```
 
-API en `http://127.0.0.1:43121/api`.
+La primera vez crea `backend/data/lubricentro.sqlite` y carga servicios/productos de ejemplo.
 
-| Método | Ruta | Uso |
-| --- | --- | --- |
-| GET | `/api/health` | Estado |
-| GET | `/api/site` | Contacto, horario, WhatsApp |
-| GET | `/api/services` | Servicios (`featured`, `category`, `q`) |
-| GET | `/api/services/:slug` | Detalle de servicio |
-| GET | `/api/products` | Productos y neumáticos |
-| GET | `/api/products/:slug` | Detalle de producto |
-| POST | `/api/quotes` | Solicitud de cotización |
+API: http://127.0.0.1:43121/api
 
-### Frontend
+### 2. Frontend (otra terminal)
 
 ```bash
 cd frontend
+cp .env.example .env
 npm install
 npm run dev
 ```
 
-App en `http://127.0.0.1:43122`. En desarrollo Vite proxifica `/api` al backend.
+Sitio: http://127.0.0.1:43122
 
-## Marca y contenido
+### Personalizar contacto
 
-Nombre, teléfono, WhatsApp, correo y dirección salen de variables de entorno. Los servicios y productos de ejemplo se cargan con el seed y se pueden reemplazar después.
+Edita `backend/.env`:
 
-## Scripts útiles
+- `SITE_WHATSAPP` → número sin `+` ni espacios (ej. `56987654321`)
+- `SITE_PHONE`, `SITE_EMAIL`, `SITE_ADDRESS`, etc.
 
-```bash
-# backend
-npm run prisma:studio   # explorar datos
-npm run build
+## API (resumen)
 
-# frontend
-npm run build
-npm run preview
-```
+| Método | Ruta | Uso |
+| --- | --- | --- |
+| GET | `/api/health` | Estado |
+| GET | `/api/site` | Contacto y horario |
+| GET | `/api/services` | Servicios |
+| GET | `/api/services/:slug` | Detalle |
+| GET | `/api/products` | Productos / neumáticos |
+| GET | `/api/products/:slug` | Detalle |
+| POST | `/api/quotes` | Cotización |
+
+## Compartir por Git
+
+Puedes subir el repo tal cual. Quien lo clone solo necesita Node y seguir los pasos de arriba. El archivo SQLite (`backend/data/`) no se versiona: cada máquina genera el suyo al arrancar.

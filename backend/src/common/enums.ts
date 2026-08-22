@@ -1,0 +1,25 @@
+export enum ServiceCategory {
+  LUBRICACION = 'LUBRICACION',
+  MANTENIMIENTO = 'MANTENIMIENTO',
+  NEUMATICOS = 'NEUMATICOS',
+  DIAGNOSTICO = 'DIAGNOSTICO',
+}
+
+export enum ProductCategory {
+  LUBRICANTE = 'LUBRICANTE',
+  FILTRO = 'FILTRO',
+  NEUMATICO = 'NEUMATICO',
+  REPUESTO = 'REPUESTO',
+  BATERIA = 'BATERIA',
+}
+
+export enum QuoteStatus {
+  PENDING = 'PENDING',
+  CONTACTED = 'CONTACTED',
+  CLOSED = 'CLOSED',
+}
+
+export enum QuoteItemKind {
+  SERVICE = 'SERVICE',
+  PRODUCT = 'PRODUCT',
+}

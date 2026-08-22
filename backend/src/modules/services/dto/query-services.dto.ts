@@ -1,6 +1,6 @@
 import { IsBoolean, IsEnum, IsOptional, IsString } from 'class-validator';
 import { Transform } from 'class-transformer';
-import { ServiceCategory } from '@prisma/client';
+import { ServiceCategory } from '../../../common/enums';
 
 export class QueryServicesDto {
   @IsOptional()
