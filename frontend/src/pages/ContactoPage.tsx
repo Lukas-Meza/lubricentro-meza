@@ -12,7 +12,7 @@ export function ContactoPage() {
       <PageHero
         kicker="CONTACTO"
         title="Pasa al taller o escríbenos ahora."
-        copy="Maipú, Santiago. WhatsApp es el canal más rápido para cotizar y agendar."
+        copy="Talca, Región del Maule. WhatsApp es el canal más rápido para cotizar y agendar."
       />
       <section className="container-page grid gap-8 section-y-sm lg:grid-cols-[1fr_1.2fr] lg:gap-10">
         <div className="space-y-4 sm:space-y-6">

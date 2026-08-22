@@ -27,12 +27,12 @@ export const appConfig = {
     phone: env('SITE_PHONE', '+56 9 7154 3327'),
     whatsapp: env('SITE_WHATSAPP', '56971543327'),
     email: env('SITE_EMAIL', 'contacto@lubricentromeza.cl'),
-    address: env('SITE_ADDRESS', 'Av. Pajaritos 3450, Maipú'),
-    city: env('SITE_CITY', 'Santiago'),
-    region: env('SITE_REGION', 'Región Metropolitana'),
+    address: env('SITE_ADDRESS', 'Av. San Miguel 2450'),
+    city: env('SITE_CITY', 'Talca'),
+    region: env('SITE_REGION', 'Región del Maule'),
     mapsQuery: env(
       'SITE_MAPS_QUERY',
-      'Av. Pajaritos 3450, Maipú, Santiago, Chile',
+      'Av. San Miguel 2450, Talca, Región del Maule, Chile',
     ),
     instagram: env(
       'SITE_INSTAGRAM',
