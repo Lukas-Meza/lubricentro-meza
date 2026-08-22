@@ -13,7 +13,7 @@ import { whatsappUrl } from '../utils/whatsapp';
 const HERO =
   'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=80';
 const BAY =
-  'https://images.unsplash.com/photo-1487754180451-c456f9561d89?auto=format&fit=crop&w=1600&q=80';
+  'https://images.unsplash.com/photo-1625047509168-a7026f36de04?auto=format&fit=crop&w=1600&q=80';
 
 export function HomePage() {
   const { site } = useSite();

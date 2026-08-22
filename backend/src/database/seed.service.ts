@@ -64,7 +64,7 @@ export class SeedService implements OnModuleInit {
         priceFrom: 89990,
         category: ServiceCategory.MANTENIMIENTO,
         featured: true,
-        imageUrl: img('photo-1487754180451-c456f9561d89'),
+        imageUrl: img('photo-1625047509168-a7026f36de04'),
         includes: [
           'Cambio de aceite y filtro',
           'Filtro de aire y de polen',
@@ -102,7 +102,7 @@ export class SeedService implements OnModuleInit {
         priceFrom: 34990,
         category: ServiceCategory.MANTENIMIENTO,
         featured: false,
-        imageUrl: img('photo-1487754180451-c456f9561d89', 1200),
+        imageUrl: img('photo-1625047509168-a7026f36de04', 1200),
         includes: [
           'Filtro de aire',
           'Filtro de cabina / polen',
@@ -235,7 +235,7 @@ export class SeedService implements OnModuleInit {
         priceFrom: 42990,
         featured: true,
         inStock: true,
-        imageUrl: img('photo-1487754180451-c456f9561d89', 900),
+        imageUrl: img('photo-1625047509168-a7026f36de04', 900),
         specs: { viscosidad: '5W-30', presentacion: '4 L', tipo: 'Sintético' },
       },
       {
@@ -267,7 +267,7 @@ export class SeedService implements OnModuleInit {
         priceFrom: 44990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1487754180451-c456f9561d89', 900),
+        imageUrl: img('photo-1625047509168-a7026f36de04', 900),
         specs: { viscosidad: '5W-30', presentacion: '4 L', tipo: 'Sintético' },
       },
       {
@@ -313,7 +313,7 @@ export class SeedService implements OnModuleInit {
         priceFrom: 12990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1487754180451-c456f9561d89', 800),
+        imageUrl: img('photo-1625047509168-a7026f36de04', 800),
         specs: { tipo: 'Aire' },
       },
       {
@@ -361,7 +361,7 @@ export class SeedService implements OnModuleInit {
         priceFrom: 139990,
         featured: true,
         inStock: true,
-        imageUrl: img('photo-1609521263047-f8fb6913f306', 1000),
+        imageUrl: img('photo-1552519507-da3b142c6e3d', 1000),
         specs: { medida: '215/55 R17', uso: 'Touring' },
       },
       {
@@ -391,7 +391,7 @@ export class SeedService implements OnModuleInit {
         priceFrom: 79990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1609521263047-f8fb6913f306', 900),
+        imageUrl: img('photo-1552519507-da3b142c6e3d', 900),
         specs: { medida: '185/65 R15', uso: 'Urbano' },
       },
       {
@@ -449,7 +449,7 @@ export class SeedService implements OnModuleInit {
         priceFrom: 32990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1487754180451-c456f9561d89', 900),
+        imageUrl: img('photo-1625047509168-a7026f36de04', 900),
         specs: { tipo: 'Iridium', unidad: 'Juego' },
       },
       {
@@ -464,7 +464,7 @@ export class SeedService implements OnModuleInit {
         priceFrom: 129990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1487754180451-c456f9561d89', 1000),
+        imageUrl: img('photo-1625047509168-a7026f36de04', 1000),
         specs: { unidad: 'Par', marca: 'Monroe' },
       },
       {
