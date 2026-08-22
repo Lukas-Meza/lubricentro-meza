@@ -6,45 +6,45 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ProductCategory } from '../../../common/enums';
-import { QuoteItem } from '../../quotes/entities/quote-item.entity';
+import { ProductCategory } from '../common/enums';
+import { QuoteItem } from './quote-item.entity';
 
 @Entity('products')
 export class Product {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', unique: true })
   slug!: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   name!: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   brand!: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   sku!: string | null;
 
-  @Column()
+  @Column({ type: 'varchar' })
   shortDescription!: string;
 
   @Column({ type: 'text' })
   description!: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'varchar' })
   category!: ProductCategory;
 
   @Column({ type: 'integer', nullable: true })
   priceFrom!: number | null;
 
-  @Column({ default: true })
+  @Column({ type: 'boolean', default: true })
   inStock!: boolean;
 
-  @Column({ default: false })
+  @Column({ type: 'boolean', default: false })
   featured!: boolean;
 
-  @Column()
+  @Column({ type: 'varchar' })
   imageUrl!: string;
 
   @Column({ type: 'simple-json', nullable: true })

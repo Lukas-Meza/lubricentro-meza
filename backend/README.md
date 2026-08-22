@@ -1,3 +1,9 @@
-API local de Lubricentro Meza (NestJS + TypeORM + SQLite).
+API local de Lubricentro Meza con **Node.js + Express + TypeORM + SQLite**.
 
-Ver el README de la raíz: `npm install` y `npm run start:dev`.
+```bash
+cp .env.example .env
+npm install
+npm run dev
+```
+
+Escucha en `http://127.0.0.1:43121/api`.

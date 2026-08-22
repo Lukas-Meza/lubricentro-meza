@@ -1,39 +1,12 @@
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { ProductCategory, ServiceCategory } from '../common/enums';
-import { Product } from '../modules/products/entities/product.entity';
-import { Service } from '../modules/services/entities/service.entity';
+import { Product } from '../entities/product.entity';
+import { Service } from '../entities/service.entity';
 
 const img = (id: string, w = 1400) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
-@Injectable()
-export class SeedService implements OnModuleInit {
-  private readonly logger = new Logger(SeedService.name);
-
-  constructor(
-    @InjectRepository(Service)
-    private readonly services: Repository<Service>,
-    @InjectRepository(Product)
-    private readonly products: Repository<Product>,
-  ) {}
-
-  async onModuleInit(): Promise<void> {
-    const count = await this.services.count();
-    if (count > 0) {
-      this.logger.log('Base local ya tiene datos; se omite el seed.');
-      return;
-    }
-
-    this.logger.log('Sembrando catálogo local (SQLite)…');
-    await this.services.save(this.serviceRows());
-    await this.products.save(this.productRows());
-    this.logger.log('Seed listo.');
-  }
-
-  private serviceRows(): Partial<Service>[] {
-    return [
+const serviceRows = (): Partial<Service>[] => [
       {
         slug: 'cambio-aceite-filtro',
         name: 'Cambio de aceite y filtro',
@@ -219,10 +192,8 @@ export class SeedService implements OnModuleInit {
         ],
       },
     ];
-  }
 
-  private productRows(): Partial<Product>[] {
-    return [
+const productRows = (): Partial<Product>[] => [
       {
         slug: 'mobil-1-5w30',
         name: 'Mobil 1 5W-30 sintético 4L',
@@ -498,5 +469,17 @@ export class SeedService implements OnModuleInit {
         specs: { unidad: 'Par', tipo: 'Plano' },
       },
     ];
+
+export async function seedIfEmpty(dataSource: DataSource): Promise<void> {
+  const services = dataSource.getRepository(Service);
+  const products = dataSource.getRepository(Product);
+  const count = await services.count();
+  if (count > 0) {
+    console.log('Base local ya tiene datos; se omite el seed.');
+    return;
   }
+  console.log('Sembrando catálogo local (SQLite)…');
+  await services.save(serviceRows());
+  await products.save(productRows());
+  console.log('Seed listo.');
 }

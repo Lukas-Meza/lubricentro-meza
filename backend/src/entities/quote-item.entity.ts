@@ -5,27 +5,27 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { QuoteItemKind } from '../../../common/enums';
-import { Product } from '../../products/entities/product.entity';
-import { Service } from '../../services/entities/service.entity';
+import { QuoteItemKind } from '../common/enums';
+import { Product } from './product.entity';
 import { Quote } from './quote.entity';
+import { Service } from './service.entity';
 
 @Entity('quote_items')
 export class QuoteItem {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   quoteId!: string;
 
   @ManyToOne(() => Quote, (quote) => quote.items, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'quoteId' })
   quote!: Quote;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'varchar' })
   kind!: QuoteItemKind;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   serviceId!: string | null;
 
   @ManyToOne(() => Service, (service) => service.quoteItems, {
@@ -35,7 +35,7 @@ export class QuoteItem {
   @JoinColumn({ name: 'serviceId' })
   service!: Service | null;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   productId!: string | null;
 
   @ManyToOne(() => Product, (product) => product.quoteItems, {

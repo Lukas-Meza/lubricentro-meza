@@ -6,21 +6,21 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ServiceCategory } from '../../../common/enums';
-import { QuoteItem } from '../../quotes/entities/quote-item.entity';
+import { ServiceCategory } from '../common/enums';
+import { QuoteItem } from './quote-item.entity';
 
 @Entity('services')
 export class Service {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', unique: true })
   slug!: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   name!: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   shortDescription!: string;
 
   @Column({ type: 'text' })
@@ -32,13 +32,13 @@ export class Service {
   @Column({ type: 'integer', nullable: true })
   priceFrom!: number | null;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'varchar' })
   category!: ServiceCategory;
 
-  @Column({ default: false })
+  @Column({ type: 'boolean', default: false })
   featured!: boolean;
 
-  @Column()
+  @Column({ type: 'varchar' })
   imageUrl!: string;
 
   @Column({ type: 'simple-json', default: '[]' })

@@ -1,21 +1,17 @@
 # Lubricentro Meza
 
-Sitio web del centro automotriz **Lubricentro Meza** (lubricación, nivel 2, neumáticos y repuestos). El usuario ve el catálogo, arma una selección y pide cotización por el formulario o WhatsApp. **No hay carrito ni pagos.**
+Sitio del centro automotriz **Lubricentro Meza**: catálogo de servicios, productos y neumáticos, cotización y WhatsApp. Sin carrito ni pagos.
 
-Pensado para correr **100% en local** (sin Docker ni PostgreSQL). La base de datos es un archivo SQLite que se crea solo.
+Corre **100% en local** (solo Node.js). La base es un archivo SQLite.
 
-## Estructura
+## Stack
 
-```
-frontend/   React + TypeScript + Vite + Tailwind
-backend/    NestJS + TypeORM + SQLite
-```
+- **frontend/** — React + TypeScript + Vite + Tailwind
+- **backend/** — Node.js + Express + TypeORM + SQLite
 
-## Requisitos
+## Cómo ejecutarlo
 
-- Node.js 20+ (recomendado 22)
-
-## Cómo ejecutarlo en local
+Necesitas Node.js 20+.
 
 ### 1. Backend
 
@@ -23,10 +19,10 @@ backend/    NestJS + TypeORM + SQLite
 cd backend
 cp .env.example .env
 npm install
-npm run start:dev
+npm run dev
 ```
 
-La primera vez crea `backend/data/lubricentro.sqlite` y carga servicios/productos de ejemplo.
+La primera vez crea `backend/data/lubricentro.sqlite` y carga el catálogo.
 
 API: http://127.0.0.1:43121/api
 
@@ -41,14 +37,11 @@ npm run dev
 
 Sitio: http://127.0.0.1:43122
 
-### Personalizar contacto
+### Contacto / WhatsApp
 
-Edita `backend/.env`:
+Edita `backend/.env` (`SITE_WHATSAPP` sin `+` ni espacios, ej. `56987654321`).
 
-- `SITE_WHATSAPP` → número sin `+` ni espacios (ej. `56987654321`)
-- `SITE_PHONE`, `SITE_EMAIL`, `SITE_ADDRESS`, etc.
-
-## API (resumen)
+## API
 
 | Método | Ruta | Uso |
 | --- | --- | --- |
@@ -56,10 +49,10 @@ Edita `backend/.env`:
 | GET | `/api/site` | Contacto y horario |
 | GET | `/api/services` | Servicios |
 | GET | `/api/services/:slug` | Detalle |
-| GET | `/api/products` | Productos / neumáticos |
+| GET | `/api/products` | Productos |
 | GET | `/api/products/:slug` | Detalle |
 | POST | `/api/quotes` | Cotización |
 
-## Compartir por Git
+## Git
 
-Puedes subir el repo tal cual. Quien lo clone solo necesita Node y seguir los pasos de arriba. El archivo SQLite (`backend/data/`) no se versiona: cada máquina genera el suyo al arrancar.
+Puedes subir el repo tal cual. El SQLite (`backend/data/`) no se versiona: cada máquina lo genera al arrancar.

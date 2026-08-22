@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { QuoteStatus } from '../../../common/enums';
+import { QuoteStatus } from '../common/enums';
 import { QuoteItem } from './quote-item.entity';
 
 @Entity('quotes')
@@ -14,19 +14,19 @@ export class Quote {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   name!: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   phone!: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   email!: string | null;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   vehicleMake!: string | null;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   vehicleModel!: string | null;
 
   @Column({ type: 'integer', nullable: true })
@@ -35,7 +35,7 @@ export class Quote {
   @Column({ type: 'text', nullable: true })
   message!: string | null;
 
-  @Column({ type: 'text', default: QuoteStatus.PENDING })
+  @Column({ type: 'varchar', default: QuoteStatus.PENDING })
   status!: QuoteStatus;
 
   @OneToMany(() => QuoteItem, (item) => item.quote, { cascade: true })
