@@ -12,10 +12,12 @@ import { ContactoPage } from './pages/ContactoPage';
 import { CotizarPage } from './pages/CotizarPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
+// Rutas del sitio. QuoteProvider envuelve todo para el carrito de cotizacion.
 export default function App() {
   return (
     <QuoteProvider>
       <BrowserRouter>
+        {/* Sin esto, al cambiar de pagina a veces quedas a mitad de scroll */}
         <ScrollToTop />
         <Routes>
           <Route element={<MainLayout />}>

@@ -4,11 +4,13 @@ import { appConfig } from './config/env';
 import { initDatabase } from './database/data-source';
 import { seedIfEmpty } from './database/seed';
 
+// Arranque del backend: primero la DB, despues el seed si hace falta, y al final Express.
 async function main() {
   const dataSource = await initDatabase();
   await seedIfEmpty(dataSource);
 
   const app = createApp();
+  // 0.0.0.0 para poder entrar tambien desde otra maquina en la red local
   app.listen(appConfig.port, '0.0.0.0', () => {
     console.log(
       `API Lubricentro Meza en http://127.0.0.1:${appConfig.port}/api`,

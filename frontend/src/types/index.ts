@@ -64,6 +64,7 @@ export interface SiteInfo {
 
 export type QuoteItemKind = 'SERVICE' | 'PRODUCT';
 
+// Item del carrito de cotizacion (lo que vive en localStorage)
 export interface QuoteSelection {
   kind: QuoteItemKind;
   id: string;

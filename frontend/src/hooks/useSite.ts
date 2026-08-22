@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchSite } from '../services/site';
 import type { SiteInfo } from '../types';
 
+// Si la API no responde, igual muestro los datos de contacto del taller
 const fallback: SiteInfo = {
   name: 'Lubricentro Meza',
   tagline: 'Mantenimiento de nivel 2 con estándar de marca',

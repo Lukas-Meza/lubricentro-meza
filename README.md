@@ -197,7 +197,7 @@ Si quieres “resetear” el catálogo:
 3. Vuelve a correr `npm run dev` en `backend`.  
    Se crea de nuevo y se vuelve a cargar el seed.
 
-Las imágenes del catálogo están en `frontend/public/images/`. Las rutas se definen en `backend/src/database/seed.ts`.
+Las imágenes del catálogo están en `frontend/public/images/` (carpetas `servicios`, `productos` y `paginas`). Las rutas se definen en `backend/src/database/seed.ts`.
 
 ---
 

@@ -1,6 +1,7 @@
 import { api } from './api';
 import type { ApiItem, ApiList, Product, WorkshopService } from '../types';
 
+// Llamadas al catalogo: listados con filtros y detalle por slug
 export async function fetchServices(params?: {
   featured?: boolean;
   category?: string;

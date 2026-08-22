@@ -14,6 +14,7 @@ const categoryLabel: Record<Product['category'], string> = {
 export function ProductCard({ product }: { product: Product }) {
   const { addProduct, items } = useQuote();
   const added = items.some((item) => item.id === product.id);
+  // Lubricantes van con object-contain; el resto se recorta un poco para llenar el marco
   const isLubricant = product.category === 'LUBRICANTE';
 
   return (

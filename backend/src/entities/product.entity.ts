@@ -9,6 +9,7 @@ import {
 import { ProductCategory } from '../common/enums';
 import { QuoteItem } from './quote-item.entity';
 
+// Catalogo de productos (aceites, filtros, neumaticos, baterias, etc.)
 @Entity('products')
 export class Product {
   @PrimaryGeneratedColumn('uuid')

@@ -3,9 +3,11 @@ import { ProductCategory, ServiceCategory } from '../common/enums';
 import { Product } from '../entities/product.entity';
 import { Service } from '../entities/service.entity';
 
+// Fallback a Unsplash por si alguna fila todavia no tiene foto local
 const img = (id: string, w = 1400) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
+// Catalogo inicial de servicios. Las imagenes apuntan a frontend/public/images/servicios
 const serviceRows = (): Partial<Service>[] => [
       {
         slug: 'cambio-aceite-filtro',
@@ -18,7 +20,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 42990,
         category: ServiceCategory.LUBRICACION,
         featured: true,
-        imageUrl: '/images/cambio-aceite.jpg',
+        imageUrl: '/images/servicios/cambio-aceite.jpg',
         includes: [
           'Aceite según especificación del vehículo',
           'Filtro de aceite nuevo',
@@ -56,7 +58,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 19990,
         category: ServiceCategory.DIAGNOSTICO,
         featured: false,
-        imageUrl: '/images/revision-20puntos.png',
+        imageUrl: '/images/servicios/revision-20puntos.png',
         includes: [
           'Frenos y suspensión',
           'Luces y batería',
@@ -75,7 +77,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 34990,
         category: ServiceCategory.MANTENIMIENTO,
         featured: false,
-        imageUrl: '/images/pack-filtros.jpg',
+        imageUrl: '/images/servicios/pack-filtros.jpg',
         includes: [
           'Filtro de aire',
           'Filtro de cabina / polen',
@@ -93,7 +95,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 39990,
         category: ServiceCategory.MANTENIMIENTO,
         featured: false,
-        imageUrl: '/images/refrigerante.jpg',
+        imageUrl: '/images/servicios/refrigerante.jpg',
         includes: [
           'Drenaje del sistema',
           'Recarga con refrigerante especificado',
@@ -129,7 +131,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 28000,
         category: ServiceCategory.NEUMATICOS,
         featured: true,
-        imageUrl: '/images/balanceo-neumaticos.avif',
+        imageUrl: '/images/servicios/balanceo-neumaticos.avif',
         includes: [
           'Montaje por rueda',
           'Válvula nueva (si se requiere)',
@@ -166,7 +168,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 18990,
         category: ServiceCategory.DIAGNOSTICO,
         featured: false,
-        imageUrl: '/images/diagnostico-computarizado.jpg',
+        imageUrl: '/images/servicios/diagnostico-computarizado.jpg',
         includes: [
           'Lectura de códigos OBD',
           'Interpretación del fallo',
@@ -184,7 +186,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 14990,
         category: ServiceCategory.MANTENIMIENTO,
         featured: false,
-        imageUrl: '/images/cambio-bateria.webp',
+        imageUrl: '/images/servicios/cambio-bateria.webp',
         includes: [
           'Test de batería y alternador',
           'Instalación',
@@ -193,7 +195,9 @@ const serviceRows = (): Partial<Service>[] => [
       },
     ];
 
+// Catalogo inicial de productos (lubricantes, filtros, gomas, etc.)
 const productRows = (): Partial<Product>[] => [
+  // Catalogo inicial de productos. Imagenes en frontend/public/images/productos
       {
         slug: 'mobil-1-5w30',
         name: 'Mobil 1 5W-30 sintético 4L',
@@ -206,7 +210,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 42990,
         featured: true,
         inStock: true,
-        imageUrl: '/images/mobil1.png',
+        imageUrl: '/images/productos/lubricantes/mobil1.png',
         specs: { viscosidad: '5W-30', presentacion: '4 L', tipo: 'Sintético' },
       },
       {
@@ -222,7 +226,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 39990,
         featured: true,
         inStock: true,
-        imageUrl: '/images/shellhelix.avif',
+        imageUrl: '/images/productos/lubricantes/shellhelix.avif',
         specs: { viscosidad: '5W-40', presentacion: '4 L', tipo: 'Sintético' },
       },
       {
@@ -238,7 +242,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 44990,
         featured: false,
         inStock: true,
-        imageUrl: '/images/castrol.webp',
+        imageUrl: '/images/productos/lubricantes/castrol.webp',
         specs: { viscosidad: '5W-30', presentacion: '4 L', tipo: 'Sintético' },
       },
       {
@@ -253,7 +257,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 41990,
         featured: false,
         inStock: true,
-        imageUrl: '/images/valvoline.avif',
+        imageUrl: '/images/productos/lubricantes/valvoline.avif',
         specs: { viscosidad: '0W-20', presentacion: '4 L', tipo: 'Sintético' },
       },
       {
@@ -269,7 +273,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 8990,
         featured: true,
         inStock: true,
-        imageUrl: '/images/mannfilter.png',
+        imageUrl: '/images/productos/filtros/mannfilter.png',
         specs: { tipo: 'Aceite', origen: 'Equivalente OE' },
       },
       {
@@ -284,7 +288,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 12990,
         featured: false,
         inStock: true,
-        imageUrl: '/images/filtroairebosch.jpg',
+        imageUrl: '/images/productos/filtros/filtroairebosch.jpg',
         specs: { tipo: 'Aire' },
       },
       {
@@ -300,7 +304,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 14990,
         featured: false,
         inStock: true,
-        imageUrl: '/images/filtro-cabina-bosch.jpg',
+        imageUrl: '/images/productos/filtros/filtro-cabina-bosch.jpg',
         specs: { tipo: 'Cabina' },
       },
       {
@@ -316,7 +320,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 119990,
         featured: true,
         inStock: true,
-        imageUrl: '/images/michelin.jpg',
+        imageUrl: '/images/productos/neumaticos/michelin.jpg',
         specs: { medida: '205/55 R16', indice: '91V', uso: 'Touring' },
       },
       {
@@ -332,7 +336,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 139990,
         featured: true,
         inStock: true,
-        imageUrl: '/images/bridgestone.webp',
+        imageUrl: '/images/productos/neumaticos/bridgestone.webp',
         specs: { medida: '215/55 R17', uso: 'Touring' },
       },
       {
@@ -347,7 +351,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 149990,
         featured: false,
         inStock: true,
-        imageUrl: '/images/continental.webp',
+        imageUrl: '/images/productos/neumaticos/continental.webp',
         specs: { medida: '225/45 R17', uso: 'Performance' },
       },
       {
@@ -362,7 +366,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 79990,
         featured: false,
         inStock: true,
-        imageUrl: '/images/cinturato-pirelli.jpg',
+        imageUrl: '/images/productos/neumaticos/cinturato-pirelli.jpg',
         specs: { medida: '185/65 R15', uso: 'Urbano' },
       },
       {
@@ -376,7 +380,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 84990,
         featured: false,
         inStock: true,
-        imageUrl: '/images/neumatico-goodyear.jpg',
+        imageUrl: '/images/productos/neumaticos/neumatico-goodyear.jpg',
         specs: { medida: '195/65 R15', uso: 'Touring' },
       },
       {
@@ -391,7 +395,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 45990,
         featured: true,
         inStock: true,
-        imageUrl: '/images/pastillas-brembo.jpg',
+        imageUrl: '/images/productos/repuestos/pastillas-brembo.jpg',
         specs: { eje: 'Delantero', tipo: 'Pastillas' },
       },
       {
@@ -406,7 +410,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 89990,
         featured: true,
         inStock: true,
-        imageUrl: '/images/bosch.webp',
+        imageUrl: '/images/productos/baterias/bosch.webp',
         specs: { voltaje: '12V', linea: 'S4' },
       },
       {
@@ -420,7 +424,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 32990,
         featured: false,
         inStock: true,
-        imageUrl: '/images/bujias-iridium.webp',
+        imageUrl: '/images/productos/repuestos/bujias-iridium.webp',
         specs: { tipo: 'Iridium', unidad: 'Juego' },
       },
       {
@@ -435,7 +439,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 129990,
         featured: false,
         inStock: true,
-        imageUrl: '/images/amortiguadores-monroe.webp',
+        imageUrl: '/images/productos/repuestos/amortiguadores-monroe.webp',
         specs: { unidad: 'Par', marca: 'Monroe' },
       },
       {
@@ -450,7 +454,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 159990,
         featured: false,
         inStock: true,
-        imageUrl: '/images/kit-gates.webp',
+        imageUrl: '/images/productos/repuestos/kit-gates.webp',
         specs: { tipo: 'Kit distribución' },
       },
       {
@@ -465,43 +469,47 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 24990,
         featured: false,
         inStock: true,
-        imageUrl: '/images/limpiaparabrisas-bosch.jpg',
+        imageUrl: '/images/productos/repuestos/limpiaparabrisas-bosch.jpg',
         specs: { unidad: 'Par', tipo: 'Plano' },
       },
     ];
 
+// Si la base ya tiene datos, igual actualizo las rutas de imagenes locales
+// (sirve cuando movi fotos de carpeta y no quiero borrar el sqlite)
 const localServiceImages: Record<string, string> = {
-  'cambio-aceite-filtro': '/images/cambio-aceite.jpg',
-  'montaje-balanceo': '/images/balanceo-neumaticos.avif',
-  'revision-20-puntos': '/images/revision-20puntos.png',
-  'pack-filtros': '/images/pack-filtros.jpg',
-  'servicio-refrigerante': '/images/refrigerante.jpg',
-  'diagnostico-obd': '/images/diagnostico-computarizado.jpg',
-  'cambio-bateria': '/images/cambio-bateria.webp',
+  'cambio-aceite-filtro': '/images/servicios/cambio-aceite.jpg',
+  'montaje-balanceo': '/images/servicios/balanceo-neumaticos.avif',
+  'revision-20-puntos': '/images/servicios/revision-20puntos.png',
+  'pack-filtros': '/images/servicios/pack-filtros.jpg',
+  'servicio-refrigerante': '/images/servicios/refrigerante.jpg',
+  'diagnostico-obd': '/images/servicios/diagnostico-computarizado.jpg',
+  'cambio-bateria': '/images/servicios/cambio-bateria.webp',
 };
 
 const localProductImages: Record<string, string> = {
-  'mobil-1-5w30': '/images/mobil1.png',
-  'shell-helix-ultra-5w40': '/images/shellhelix.avif',
-  'castrol-edge-5w30': '/images/castrol.webp',
-  'valvoline-synpower-0w20': '/images/valvoline.avif',
-  'filtro-aceite-mann': '/images/mannfilter.png',
-  'filtro-aire-bosch': '/images/filtroairebosch.jpg',
-  'filtro-cabina-bosch': '/images/filtro-cabina-bosch.jpg',
-  'michelin-primacy-4-205-55-r16': '/images/michelin.jpg',
-  'bridgestone-turanza-215-55-r17': '/images/bridgestone.webp',
-  'continental-ultracontact-225-45-r17': '/images/continental.webp',
-  'pirelli-cinturato-185-65-r15': '/images/cinturato-pirelli.jpg',
-  'goodyear-efficientgrip-195-65-r15': '/images/neumatico-goodyear.jpg',
-  'pastillas-brembo-delanteras': '/images/pastillas-brembo.jpg',
-  'bateria-bosch-s4': '/images/bosch.webp',
-  'bujias-ngk-laser': '/images/bujias-iridium.webp',
-  'amortiguadores-monroe-par': '/images/amortiguadores-monroe.webp',
-  'kit-distribucion-gates': '/images/kit-gates.webp',
-  'wiper-bosch-aerotwin': '/images/limpiaparabrisas-bosch.jpg',
+  'mobil-1-5w30': '/images/productos/lubricantes/mobil1.png',
+  'shell-helix-ultra-5w40': '/images/productos/lubricantes/shellhelix.avif',
+  'castrol-edge-5w30': '/images/productos/lubricantes/castrol.webp',
+  'valvoline-synpower-0w20': '/images/productos/lubricantes/valvoline.avif',
+  'filtro-aceite-mann': '/images/productos/filtros/mannfilter.png',
+  'filtro-aire-bosch': '/images/productos/filtros/filtroairebosch.jpg',
+  'filtro-cabina-bosch': '/images/productos/filtros/filtro-cabina-bosch.jpg',
+  'michelin-primacy-4-205-55-r16': '/images/productos/neumaticos/michelin.jpg',
+  'bridgestone-turanza-215-55-r17': '/images/productos/neumaticos/bridgestone.webp',
+  'continental-ultracontact-225-45-r17': '/images/productos/neumaticos/continental.webp',
+  'pirelli-cinturato-185-65-r15': '/images/productos/neumaticos/cinturato-pirelli.jpg',
+  'goodyear-efficientgrip-195-65-r15': '/images/productos/neumaticos/neumatico-goodyear.jpg',
+  'pastillas-brembo-delanteras': '/images/productos/repuestos/pastillas-brembo.jpg',
+  'bateria-bosch-s4': '/images/productos/baterias/bosch.webp',
+  'bujias-ngk-laser': '/images/productos/repuestos/bujias-iridium.webp',
+  'amortiguadores-monroe-par': '/images/productos/repuestos/amortiguadores-monroe.webp',
+  'kit-distribucion-gates': '/images/productos/repuestos/kit-gates.webp',
+  'wiper-bosch-aerotwin': '/images/productos/repuestos/limpiaparabrisas-bosch.jpg',
 };
 
+// Mapa slug -> ruta local. Lo uso para no depender de Unsplash cuando ya hay foto en el repo.
 async function syncLocalCatalogImages(dataSource: DataSource): Promise<void> {
+  // Actualizo rutas de imagen aunque el seed no corra (por si movi archivos en public/)
   const services = dataSource.getRepository(Service);
   const products = dataSource.getRepository(Product);
   for (const [slug, imageUrl] of Object.entries(localServiceImages)) {
@@ -512,6 +520,7 @@ async function syncLocalCatalogImages(dataSource: DataSource): Promise<void> {
   }
 }
 
+// Solo siembra si la tabla de servicios esta vacia. Si ya hay data, no la pisa.
 export async function seedIfEmpty(dataSource: DataSource): Promise<void> {
   const services = dataSource.getRepository(Service);
   const products = dataSource.getRepository(Product);

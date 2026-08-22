@@ -6,6 +6,7 @@ import { Service } from '../../entities/service.entity';
 
 export const servicesRouter = Router();
 
+// Listado con filtros opcionales: categoria, destacados y busqueda simple
 servicesRouter.get('/', async (req, res, next) => {
   try {
     const repo = AppDataSource.getRepository(Service);
@@ -20,6 +21,7 @@ servicesRouter.get('/', async (req, res, next) => {
     if (featured === 'true') base.featured = true;
     if (featured === 'false') base.featured = false;
 
+    // TypeORM OR con Like: mismo filtro base + coincidencia en nombre o descripcion
     if (typeof q === 'string' && q.trim()) {
       where.push({ ...base, name: Like(`%${q.trim()}%`) });
       where.push({ ...base, shortDescription: Like(`%${q.trim()}%`) });
@@ -42,6 +44,7 @@ servicesRouter.get('/categories', (_req, res) => {
   res.json({ data: Object.values(ServiceCategory) });
 });
 
+// Detalle por slug (el front usa /servicios/:slug)
 servicesRouter.get('/:slug', async (req, res, next) => {
   try {
     const service = await AppDataSource.getRepository(Service).findOne({

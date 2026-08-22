@@ -6,6 +6,7 @@ import { Product } from '../../entities/product.entity';
 
 export const productsRouter = Router();
 
+// Misma idea que servicios: filtros por categoria, stock, marca y texto libre
 productsRouter.get('/', async (req, res, next) => {
   try {
     const repo = AppDataSource.getRepository(Product);
@@ -50,6 +51,7 @@ productsRouter.get('/categories', (_req, res) => {
   res.json({ data: Object.values(ProductCategory) });
 });
 
+// Detalle por slug
 productsRouter.get('/:slug', async (req, res, next) => {
   try {
     const product = await AppDataSource.getRepository(Product).findOne({

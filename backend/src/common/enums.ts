@@ -5,6 +5,7 @@ export enum ServiceCategory {
   DIAGNOSTICO = 'DIAGNOSTICO',
 }
 
+// Categorias para filtrar el catalogo en el front
 export enum ProductCategory {
   LUBRICANTE = 'LUBRICANTE',
   FILTRO = 'FILTRO',
@@ -13,6 +14,7 @@ export enum ProductCategory {
   BATERIA = 'BATERIA',
 }
 
+// Por si mas adelante quiero un panel interno de cotizaciones
 export enum QuoteStatus {
   PENDING = 'PENDING',
   CONTACTED = 'CONTACTED',

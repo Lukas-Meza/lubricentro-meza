@@ -14,6 +14,7 @@ const filters: { id: ServiceCategory | 'ALL'; label: string }[] = [
   { id: 'DIAGNOSTICO', label: 'Diagnóstico' },
 ];
 
+// Listado de servicios con filtro por categoria
 export function ServiciosPage() {
   const [services, setServices] = useState<WorkshopService[]>([]);
   const [filter, setFilter] = useState<(typeof filters)[number]['id']>('ALL');

@@ -5,6 +5,7 @@ import { whatsappUrl } from '../utils/whatsapp';
 
 export function ContactoPage() {
   const { site } = useSite();
+  // mapsQuery viene del .env del backend (o del fallback de useSite)
   const mapsSrc = `https://maps.google.com/maps?q=${encodeURIComponent(site.mapsQuery)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   return (

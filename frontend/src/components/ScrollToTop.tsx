@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-/** Al cambiar de ruta, siempre vuelve al inicio de la página. */
+// Al cambiar de ruta vuelvo arriba; si hay hash, intento scrollear al ancla
 export function ScrollToTop() {
   const { pathname, search, hash } = useLocation();
 

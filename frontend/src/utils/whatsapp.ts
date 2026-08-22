@@ -1,6 +1,7 @@
 import { formatClp } from './format';
 import type { QuoteSelection } from '../types';
 
+// wa.me pide solo digitos; el texto va encodeado en la query
 export function whatsappUrl(phone: string, text: string): string {
   const digits = phone.replace(/\D/g, '');
   return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
@@ -10,6 +11,7 @@ export function defaultWhatsappMessage(shopName: string): string {
   return `Hola ${shopName}, quiero cotizar un servicio / producto.`;
 }
 
+// Arma el mensaje completo de cotizacion: items, precios y datos del cliente
 export function buildQuoteWhatsappMessage(input: {
   shopName: string;
   items: QuoteSelection[];
@@ -35,6 +37,7 @@ export function buildQuoteWhatsappMessage(input: {
     const qty = item.quantity;
     const kind = item.kind === 'SERVICE' ? 'Servicio' : 'Producto';
 
+    // Si no hay precio, dejo "a cotizar" para que el taller complete en el chat
     if (unit != null) {
       const lineTotal = unit * qty;
       total += lineTotal;

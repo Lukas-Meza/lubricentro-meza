@@ -7,6 +7,7 @@ import { formatClp, formatDuration } from '../utils/format';
 import { useQuote } from '../hooks/useQuote';
 import { ErrorState } from '../components/States';
 
+// Ficha de servicio: incluye, precio desde y boton para cotizar
 export function ServicioDetailPage() {
   const { slug } = useParams();
   const { addService, items } = useQuote();

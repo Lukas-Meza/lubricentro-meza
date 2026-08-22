@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { PageHero } from '../components/PageHero';
 
-const TEAM = '/images/nosotros.png';
+const TEAM = '/images/paginas/nosotros.png';
 
 export function NosotrosPage() {
   return (

@@ -10,6 +10,7 @@ import { Service } from '../../entities/service.entity';
 
 export const quotesRouter = Router();
 
+// Validacion de lo que llega del formulario / front
 const quoteSchema = z.object({
   name: z.string().min(2).max(80),
   phone: z.string().min(8).max(20),
@@ -30,6 +31,7 @@ const quoteSchema = z.object({
     .min(1),
 });
 
+// Guarda la cotizacion en SQLite. El flujo principal del sitio igual manda por WhatsApp.
 quotesRouter.post('/', async (req, res, next) => {
   try {
     const parsed = quoteSchema.safeParse(req.body);
@@ -45,6 +47,7 @@ quotesRouter.post('/', async (req, res, next) => {
     }
 
     const dto = parsed.data;
+    // Cargo los items reales desde DB para no confiar en precios que mande el cliente
     const serviceIds = dto.items
       .filter((item) => item.kind === 'SERVICE' && item.serviceId)
       .map((item) => item.serviceId as string);

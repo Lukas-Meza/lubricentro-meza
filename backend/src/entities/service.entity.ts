@@ -9,6 +9,7 @@ import {
 import { ServiceCategory } from '../common/enums';
 import { QuoteItem } from './quote-item.entity';
 
+// Tabla de servicios del taller (cambio de aceite, nivel 2, etc.)
 @Entity('services')
 export class Service {
   @PrimaryGeneratedColumn('uuid')

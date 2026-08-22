@@ -8,6 +8,7 @@ import { useSite } from '../hooks/useSite';
 import { formatClp } from '../utils/format';
 import { buildQuoteWhatsappMessage, whatsappUrl } from '../utils/whatsapp';
 
+// Flujo principal de cotizacion: abre WhatsApp con el resumen listo
 export function CotizarPage() {
   const { items, updateQuantity, remove, clear } = useQuote();
   const { site } = useSite();
@@ -21,6 +22,7 @@ export function CotizarPage() {
   const [vehicleYear, setVehicleYear] = useState('');
   const [message, setMessage] = useState('');
 
+  // Suma solo lo que tiene precio; el resto se cotiza a mano en el chat
   const estimatedTotal = useMemo(
     () =>
       items.reduce((sum, item) => {
@@ -66,6 +68,7 @@ export function CotizarPage() {
       return;
     }
     setError(null);
+    // SITE_WHATSAPP es el numero del taller; el del cliente va en el texto
     const url = whatsappUrl(site.whatsapp, whatsappText);
     window.open(url, '_blank', 'noopener,noreferrer');
     clear();

@@ -10,6 +10,7 @@ import { Product } from './product.entity';
 import { Quote } from './quote.entity';
 import { Service } from './service.entity';
 
+// Linea de una cotizacion: apunta a un servicio o a un producto
 @Entity('quote_items')
 export class QuoteItem {
   @PrimaryGeneratedColumn('uuid')

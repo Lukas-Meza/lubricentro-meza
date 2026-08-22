@@ -3,6 +3,7 @@ import { appConfig } from '../../config/env';
 
 export const siteRouter = Router();
 
+// Datos publicos del taller: se leen del .env, el horario lo dejo fijo aca
 siteRouter.get('/', (_req, res) => {
   const s = appConfig.site;
   res.json({

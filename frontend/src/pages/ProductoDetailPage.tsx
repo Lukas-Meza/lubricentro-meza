@@ -6,6 +6,7 @@ import { formatClp, cn } from '../utils/format';
 import { useQuote } from '../hooks/useQuote';
 import { ErrorState } from '../components/States';
 
+// Ficha de producto: agregar a cotizacion o volver al catalogo
 export function ProductoDetailPage() {
   const { slug } = useParams();
   const { addProduct, items } = useQuote();

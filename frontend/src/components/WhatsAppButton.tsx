@@ -2,6 +2,7 @@ import { MessageCircle } from 'lucide-react';
 import { useSite } from '../hooks/useSite';
 import { defaultWhatsappMessage, whatsappUrl } from '../utils/whatsapp';
 
+// Boton flotante: mensaje generico al WhatsApp del taller
 export function WhatsAppButton() {
   const { site } = useSite();
 

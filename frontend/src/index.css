@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Tokens del sitio: tipografias, carbon/ambar y medidas de layout */
 @theme {
   --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
   --font-sans: "Manrope", system-ui, sans-serif;
@@ -345,6 +346,7 @@
     transition: transform 700ms ease;
   }
 
+  /* Aceites: enteros sobre fondo blanco, sin recortar la etiqueta */
   .card-media--lubricant .card-img {
     object-fit: contain;
     padding: 0.85rem 1rem;
@@ -357,6 +359,7 @@
     }
   }
 
+  /* Resto de productos: un poco de zoom para tapar el fondo de estudio */
   .card-media--product .card-img {
     transform: scale(1.12);
   }
@@ -423,6 +426,7 @@
   }
 
   .card-footer {
+    /* Empuja precio + botones al fondo para que todas las cards midan igual */
     margin-top: auto;
     padding-top: 0.75rem;
   }

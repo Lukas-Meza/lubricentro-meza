@@ -9,6 +9,7 @@ import {
 import { QuoteStatus } from '../common/enums';
 import { QuoteItem } from './quote-item.entity';
 
+// Cotizacion guardada desde el formulario (cliente + vehiculo + items)
 @Entity('quotes')
 export class Quote {
   @PrimaryGeneratedColumn('uuid')

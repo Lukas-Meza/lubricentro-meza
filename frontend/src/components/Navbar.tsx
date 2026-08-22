@@ -19,6 +19,7 @@ export function Navbar() {
   const { count } = useQuote();
   const location = useLocation();
 
+  // Fondo mas solido cuando scrolleas para que se lea bien el menu
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
@@ -26,10 +27,12 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Cierro el menu mobile al navegar
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
 
+  // Evito scroll del body con el drawer abierto
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => {

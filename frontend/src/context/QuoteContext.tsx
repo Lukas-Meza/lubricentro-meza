@@ -9,6 +9,7 @@ import {
 } from 'react';
 import type { Product, QuoteSelection, WorkshopService } from '../types';
 
+// Persisto la cotizacion en localStorage para que no se pierda al refrescar
 const STORAGE_KEY = 'lubricentro-meza-quote';
 
 function readStored(): QuoteSelection[] {
@@ -42,6 +43,7 @@ export function QuoteProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
   }, []);
 
+  // Si ya esta en la lista, solo subo la cantidad (tope 24)
   const addService = useCallback(
     (service: WorkshopService) => {
       const existing = items.find((item) => item.id === service.id);

@@ -15,6 +15,7 @@ const filters: { id: ProductCategory | 'ALL'; label: string }[] = [
   { id: 'BATERIA', label: 'Baterías' },
 ];
 
+// Catalogo de productos con filtro por categoria (client-side sobre el listado)
 export function ProductosPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [filter, setFilter] = useState<(typeof filters)[number]['id']>('ALL');

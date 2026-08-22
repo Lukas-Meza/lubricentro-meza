@@ -1,5 +1,6 @@
 export function formatClp(value: number | null | undefined): string {
   if (value === null || value === undefined) return 'A cotizar';
+  // Formato chile: $ 42.990 sin decimales
   return new Intl.NumberFormat('es-CL', {
     style: 'currency',
     currency: 'CLP',

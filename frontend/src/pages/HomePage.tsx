@@ -12,8 +12,9 @@ import { whatsappUrl } from '../utils/whatsapp';
 
 const HERO =
   'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=80';
-const BAY = '/images/como-trabajamos.webp';
+const BAY = '/images/paginas/como-trabajamos.webp';
 
+// Home: hero + destacados de servicios y productos desde la API
 export function HomePage() {
   const { site } = useSite();
   const [services, setServices] = useState<WorkshopService[]>([]);
