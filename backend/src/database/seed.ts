@@ -56,7 +56,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 19990,
         category: ServiceCategory.DIAGNOSTICO,
         featured: false,
-        imageUrl: img('photo-1619642751034-765dfdf7c58e'),
+        imageUrl: '/images/revision-20puntos.png',
         includes: [
           'Frenos y suspensión',
           'Luces y batería',
@@ -75,7 +75,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 34990,
         category: ServiceCategory.MANTENIMIENTO,
         featured: false,
-        imageUrl: img('photo-1625047509168-a7026f36de04', 1200),
+        imageUrl: '/images/pack-filtros.jpg',
         includes: [
           'Filtro de aire',
           'Filtro de cabina / polen',
@@ -93,7 +93,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 39990,
         category: ServiceCategory.MANTENIMIENTO,
         featured: false,
-        imageUrl: img('photo-1486262715619-67b85e0b08d3', 1200),
+        imageUrl: '/images/refrigerante.jpg',
         includes: [
           'Drenaje del sistema',
           'Recarga con refrigerante especificado',
@@ -166,7 +166,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 18990,
         category: ServiceCategory.DIAGNOSTICO,
         featured: false,
-        imageUrl: img('photo-1619642751034-765dfdf7c58e', 1200),
+        imageUrl: '/images/diagnostico-computarizado.jpg',
         includes: [
           'Lectura de códigos OBD',
           'Interpretación del fallo',
@@ -184,7 +184,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 14990,
         category: ServiceCategory.MANTENIMIENTO,
         featured: false,
-        imageUrl: img('photo-1619642751034-765dfdf7c58e', 1400),
+        imageUrl: '/images/cambio-bateria.webp',
         includes: [
           'Test de batería y alternador',
           'Instalación',
@@ -473,6 +473,11 @@ const productRows = (): Partial<Product>[] => [
 const localServiceImages: Record<string, string> = {
   'cambio-aceite-filtro': '/images/cambio-aceite.jpg',
   'montaje-balanceo': '/images/balanceo-neumaticos.avif',
+  'revision-20-puntos': '/images/revision-20puntos.png',
+  'pack-filtros': '/images/pack-filtros.jpg',
+  'servicio-refrigerante': '/images/refrigerante.jpg',
+  'diagnostico-obd': '/images/diagnostico-computarizado.jpg',
+  'cambio-bateria': '/images/cambio-bateria.webp',
 };
 
 const localProductImages: Record<string, string> = {

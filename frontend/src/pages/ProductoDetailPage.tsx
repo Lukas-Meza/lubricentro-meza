@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { fetchProduct } from '../services/catalog';
 import type { Product } from '../types';
-import { formatClp } from '../utils/format';
+import { formatClp, cn } from '../utils/format';
 import { useQuote } from '../hooks/useQuote';
 import { ErrorState } from '../components/States';
 
@@ -21,9 +21,9 @@ export function ProductoDetailPage() {
 
   if (error) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-20">
+      <div className="container-page max-w-3xl py-16 sm:py-20">
         <ErrorState message={error} />
-        <Link to="/productos" className="mt-6 inline-block text-amber">
+        <Link to="/productos" className="link-amber mt-6 inline-block">
           Volver al catálogo
         </Link>
       </div>
@@ -32,30 +32,32 @@ export function ProductoDetailPage() {
 
   if (!product) {
     return (
-      <div className="mx-auto max-w-6xl animate-pulse px-4 py-20">
-        <div className="h-80 rounded-md bg-steel" />
+      <div className="container-page animate-pulse py-16 sm:py-20">
+        <div className="h-64 rounded-md bg-steel sm:h-80" />
       </div>
     );
   }
 
   const added = items.some((item) => item.id === product.id);
   const specs = product.specs ?? {};
+  const isLubricant = product.category === 'LUBRICANTE';
 
   return (
-    <article className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2">
-      <div className="overflow-hidden rounded-md border border-line bg-steel">
+    <article className="container-page detail-layout detail-layout--product section-y-sm">
+      <div className={cn('media-frame', isLubricant ? 'bg-ink' : 'bg-white')}>
         <img
           src={product.imageUrl}
           alt={product.name}
-          className="aspect-[4/3] h-auto w-full object-cover"
+          className={cn(
+            'product-detail-media',
+            isLubricant && 'product-detail-media--lubricant',
+          )}
         />
       </div>
       <div>
-        <p className="text-xs uppercase tracking-[0.2em] text-amber">{product.brand}</p>
-        <h1 className="mt-2 font-display text-4xl font-extrabold uppercase leading-none">
-          {product.name}
-        </h1>
-        <p className="mt-4 text-mist">{product.description}</p>
+        <p className="kicker-sm">{product.brand}</p>
+        <h1 className="heading-product mt-2">{product.name}</h1>
+        <p className="copy-muted mt-4">{product.description}</p>
         {Object.keys(specs).length > 0 ? (
           <dl className="mt-6 grid grid-cols-2 gap-3 text-sm">
             {Object.entries(specs).map(([key, value]) => (
@@ -66,19 +68,23 @@ export function ProductoDetailPage() {
             ))}
           </dl>
         ) : null}
-        <p className="mt-8 font-display text-4xl font-bold">Desde {formatClp(product.priceFrom)}</p>
-        <p className="mt-1 text-sm text-mist">
-          {product.inStock ? 'Referencia con stock habitual. Confirmamos al cotizar.' : 'Consultar disponibilidad.'}
+        <p className="mt-8 font-display text-3xl font-bold sm:text-4xl">
+          Desde {formatClp(product.priceFrom)}
         </p>
-        <div className="mt-6 flex gap-3">
+        <p className="mt-1 text-sm text-mist">
+          {product.inStock
+            ? 'Referencia con stock habitual. Confirmamos al cotizar.'
+            : 'Consultar disponibilidad.'}
+        </p>
+        <div className="cta-row mt-6">
           <button
             type="button"
             onClick={() => addProduct(product)}
-            className="rounded-sm bg-amber px-5 py-3 text-sm font-bold text-carbon hover:bg-amber-dim"
+            className="btn btn-primary flex-1 sm:flex-none"
           >
             {added ? 'Ya está en tu cotización' : 'Agregar a cotización'}
           </button>
-          <Link to="/cotizar" className="rounded-sm border border-line px-5 py-3 text-sm hover:border-amber/50">
+          <Link to="/cotizar" className="btn btn-outline flex-1 sm:flex-none">
             Ir a cotizar
           </Link>
         </div>

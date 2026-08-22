@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
 import { PageHero } from '../components/PageHero';
 
-const TEAM =
-  'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1600&q=80';
-const SHOP =
-  'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1600&q=80';
+const TEAM = '/images/nosotros.png';
 
 export function NosotrosPage() {
   return (
@@ -14,16 +11,16 @@ export function NosotrosPage() {
         title="Un lubricentro que trata el auto como si fuera propio."
         copy="Meza nace como taller de barrio con disciplina de marca: ficha técnica, lubricante correcto y cero recargos sorpresa."
       />
-      <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2">
+      <section className="container-page grid gap-8 section-y lg:grid-cols-2 lg:gap-10">
         <div>
-          <h2 className="font-display text-3xl font-bold uppercase">Por qué existimos</h2>
-          <p className="mt-4 leading-relaxed text-mist">
+          <h2 className="heading-section text-[clamp(1.5rem,4vw,1.875rem)]">Por qué existimos</h2>
+          <p className="copy-muted mt-4">
             Demasiados cambios de aceite se hacen “al ojo”. En Lubricentro Meza el punto de partida
             es la ficha del fabricante: viscosidad, especificación y kilometraje real. El nivel 2
             no es un paquete inflado: es aceite, filtros, fluidos y una revisión de 20 puntos con
             informe escrito.
           </p>
-          <p className="mt-4 leading-relaxed text-mist">
+          <p className="copy-muted mt-4">
             Vendemos neumáticos y recambio porque el auto no se cuida por partes. Si hay que
             cambiar pastillas o una batería, lo cotizamos con marca reconocida y te decimos si
             puede esperar.
@@ -41,25 +38,21 @@ export function NosotrosPage() {
             ))}
           </ul>
         </div>
-        <div className="grid gap-4">
-          <img src={TEAM} alt="Detalle de motor en el taller" className="h-56 w-full rounded-md object-cover" />
-          <img src={SHOP} alt="Técnico en bahía de servicio" className="h-56 w-full rounded-md object-cover" />
+        <div className="media-frame">
+          <img src={TEAM} alt="Equipo de Lubricentro Meza en el taller" />
         </div>
       </section>
       <section className="border-y border-line bg-ink">
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-          <p className="font-display text-sm tracking-[0.28em] text-amber">COMPROMISO</p>
-          <h2 className="mt-2 max-w-2xl font-display text-4xl font-bold uppercase">
+        <div className="container-page section-y-sm">
+          <p className="kicker">Compromiso</p>
+          <h2 className="heading-section mt-2 max-w-2xl">
             Si no hay que hacerlo, no lo vendemos.
           </h2>
-          <p className="mt-4 max-w-xl text-mist">
+          <p className="copy-muted mt-4 max-w-xl">
             Preferimos que vuelvas en 10.000 km a que te lleves un recambio que el auto no pedía.
             Esa es la forma Meza de construir confianza.
           </p>
-          <Link
-            to="/cotizar"
-            className="mt-8 inline-flex rounded-sm bg-amber px-5 py-3 text-sm font-bold text-carbon"
-          >
+          <Link to="/cotizar" className="btn btn-primary mt-8">
             Cotizar un servicio
           </Link>
         </div>

@@ -45,19 +45,14 @@ export function ServiciosPage() {
         title="Lubricación y nivel 2, hechos como corresponde."
         copy="Elige el servicio, agrégalo a la cotización y te confirmamos precio según tu vehículo."
       />
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <section className="container-page section-y-sm">
         <div className="flex flex-wrap gap-2">
           {filters.map((item) => (
             <button
               key={item.id}
               type="button"
               onClick={() => setFilter(item.id)}
-              className={cn(
-                'rounded-sm border px-3 py-1.5 text-sm',
-                filter === item.id
-                  ? 'border-amber bg-amber text-carbon'
-                  : 'border-line text-mist hover:text-bone',
-              )}
+              className={cn('chip', filter === item.id && 'chip--active')}
             >
               {item.label}
             </button>
@@ -72,7 +67,7 @@ export function ServiciosPage() {
             <EmptyState title="Sin resultados" copy="Prueba con otro filtro." />
           ) : null}
           {status === 'ready' ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid-cards grid-cards--3">
               {visible.map((service) => (
                 <ServiceCard key={service.id} service={service} />
               ))}

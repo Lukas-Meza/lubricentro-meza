@@ -54,20 +54,15 @@ export function ProductosPage() {
         title="Neumáticos, lubricantes y recambio."
         copy="Catálogo para cotizar. Confirmamos medida, viscosidad y stock antes de agendar."
       />
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <section className="container-page section-y-sm">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-wrap gap-2">
             {filters.map((item) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => setFilter(item.id)}
-                className={cn(
-                  'rounded-sm border px-3 py-1.5 text-sm',
-                  filter === item.id
-                    ? 'border-amber bg-amber text-carbon'
-                    : 'border-line text-mist hover:text-bone',
-                )}
+                className={cn('chip', filter === item.id && 'chip--active')}
               >
                 {item.label}
               </button>
@@ -77,7 +72,7 @@ export function ProductosPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Buscar marca o medida"
-            className="w-full rounded-sm border border-line bg-ink px-3 py-2 text-sm outline-none placeholder:text-mist/60 focus:border-amber sm:w-64"
+            className="field-input w-full lg:max-w-64"
           />
         </div>
         <div className="mt-8">
@@ -92,7 +87,7 @@ export function ProductosPage() {
             />
           ) : null}
           {status === 'ready' ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid-cards grid-cards--3">
               {visible.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

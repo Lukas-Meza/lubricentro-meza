@@ -40,27 +40,22 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 transition-colors duration-300',
+        'site-header',
         scrolled || open
           ? 'border-b border-line/80 bg-carbon/95 backdrop-blur-md'
           : 'border-b border-transparent bg-carbon/40 backdrop-blur-sm',
       )}
     >
-      <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="site-header__bar">
         <Logo />
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Principal">
+        <nav className="nav-desktop" aria-label="Principal">
           {links.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               end={link.to === '/'}
-              className={({ isActive }) =>
-                cn(
-                  'px-3 py-2 text-sm font-medium tracking-wide transition-colors',
-                  isActive ? 'text-amber' : 'text-bone/80 hover:text-bone',
-                )
-              }
+              className={({ isActive }) => cn('nav-link', isActive && 'is-active')}
             >
               {link.label}
             </NavLink>
@@ -68,10 +63,7 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <NavLink
-            to="/cotizar"
-            className="inline-flex items-center gap-2 rounded-sm bg-amber px-4 py-2 text-sm font-bold tracking-wide text-carbon transition hover:bg-amber-dim"
-          >
+          <NavLink to="/cotizar" className="btn btn-primary btn-sm">
             Cotizar
             {count > 0 ? (
               <span className="grid h-5 min-w-5 place-items-center rounded-full bg-carbon px-1 text-[11px] text-amber">
@@ -82,7 +74,7 @@ export function Navbar() {
 
           <button
             type="button"
-            className="grid h-10 w-10 place-items-center rounded-sm border border-line text-bone lg:hidden"
+            className="nav-toggle"
             aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={open}
             onClick={() => setOpen((value) => !value)}
@@ -93,19 +85,14 @@ export function Navbar() {
       </div>
 
       {open ? (
-        <div className="border-t border-line bg-ink lg:hidden">
-          <nav className="mx-auto flex max-w-6xl flex-col px-4 py-4" aria-label="Móvil">
+        <div className="nav-mobile">
+          <nav className="container-page flex flex-col py-4" aria-label="Móvil">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 end={link.to === '/'}
-                className={({ isActive }) =>
-                  cn(
-                    'border-b border-line/70 py-3 font-display text-2xl tracking-[0.12em]',
-                    isActive ? 'text-amber' : 'text-bone',
-                  )
-                }
+                className={({ isActive }) => cn('nav-mobile__link', isActive && 'is-active')}
               >
                 {link.label}
               </NavLink>

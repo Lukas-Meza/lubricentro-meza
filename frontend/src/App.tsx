@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QuoteProvider } from './context/QuoteContext';
 import { MainLayout } from './layouts/MainLayout';
+import { ScrollToTop } from './components/ScrollToTop';
 import { HomePage } from './pages/HomePage';
 import { ServiciosPage } from './pages/ServiciosPage';
 import { ServicioDetailPage } from './pages/ServicioDetailPage';
@@ -15,6 +16,7 @@ export default function App() {
   return (
     <QuoteProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route element={<MainLayout />}>
             <Route index element={<HomePage />} />

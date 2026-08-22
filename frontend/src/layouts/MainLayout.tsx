@@ -5,9 +5,9 @@ import { WhatsAppButton } from '../components/WhatsAppButton';
 
 export function MainLayout() {
   return (
-    <div className="flex min-h-svh flex-col bg-carbon text-bone">
+    <div className="page-shell">
       <Navbar />
-      <main className="flex-1">
+      <main className="page-main">
         <Outlet />
       </main>
       <Footer />

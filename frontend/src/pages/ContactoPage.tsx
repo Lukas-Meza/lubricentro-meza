@@ -14,9 +14,9 @@ export function ContactoPage() {
         title="Pasa al taller o escríbenos ahora."
         copy="Maipú, Santiago. WhatsApp es el canal más rápido para cotizar y agendar."
       />
-      <section className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1fr_1.2fr]">
-        <div className="space-y-6">
-          <div className="rounded-md border border-line bg-steel p-5">
+      <section className="container-page grid gap-8 section-y-sm lg:grid-cols-[1fr_1.2fr] lg:gap-10">
+        <div className="space-y-4 sm:space-y-6">
+          <div className="panel">
             <p className="flex items-center gap-2 font-display text-lg uppercase">
               <MapPin size={16} className="text-amber" /> Dirección
             </p>
@@ -26,7 +26,7 @@ export function ContactoPage() {
               {site.city}, {site.region}
             </p>
           </div>
-          <div className="rounded-md border border-line bg-steel p-5">
+          <div className="panel">
             <p className="flex items-center gap-2 font-display text-lg uppercase">
               <Phone size={16} className="text-amber" /> Teléfono y WhatsApp
             </p>
@@ -37,14 +37,14 @@ export function ContactoPage() {
             </p>
             <a
               href={whatsappUrl(site.whatsapp, `Hola ${site.name}, quiero cotizar.`)}
-              className="mt-3 inline-flex rounded-sm bg-amber px-4 py-2 text-sm font-bold text-carbon"
+              className="btn btn-primary btn-sm mt-3"
               target="_blank"
               rel="noreferrer"
             >
               Abrir WhatsApp
             </a>
           </div>
-          <div className="rounded-md border border-line bg-steel p-5">
+          <div className="panel">
             <p className="flex items-center gap-2 font-display text-lg uppercase">
               <Mail size={16} className="text-amber" /> Correo
             </p>
@@ -52,25 +52,27 @@ export function ContactoPage() {
               {site.email}
             </a>
           </div>
-          <div className="rounded-md border border-line bg-steel p-5">
+          <div className="panel">
             <p className="flex items-center gap-2 font-display text-lg uppercase">
               <Clock size={16} className="text-amber" /> Horario
             </p>
             <ul className="mt-3 space-y-1 text-sm">
               {site.hours.map((row) => (
-                <li key={row.day} className="flex justify-between border-b border-line/60 py-1">
+                <li key={row.day} className="flex justify-between gap-3 border-b border-line/60 py-1">
                   <span>{row.label}</span>
-                  <span className={row.open ? 'text-bone' : 'text-mist'}>{row.open ?? 'Cerrado'}</span>
+                  <span className={row.open ? 'text-bone' : 'text-mist'}>
+                    {row.open ?? 'Cerrado'}
+                  </span>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <div className="min-h-[360px] overflow-hidden rounded-md border border-line">
+        <div className="min-h-[280px] overflow-hidden rounded-md border border-line sm:min-h-[360px]">
           <iframe
             title="Mapa Lubricentro Meza"
             src={mapsSrc}
-            className="h-full min-h-[360px] w-full grayscale-[0.35] contrast-125"
+            className="h-full min-h-[280px] w-full grayscale-[0.35] contrast-125 sm:min-h-[360px]"
             loading="lazy"
           />
         </div>

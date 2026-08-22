@@ -5,7 +5,7 @@ import type { SiteInfo } from '../types';
 const fallback: SiteInfo = {
   name: 'Lubricentro Meza',
   tagline: 'Mantenimiento de nivel 2 con estándar de marca',
-  phone: '+56 9 8765 4321',
+  phone: '+56 9 7154 3327',
   whatsapp: '56987654321',
   email: 'contacto@lubricentromeza.cl',
   address: 'Av. Pajaritos 3450, Maipú',
