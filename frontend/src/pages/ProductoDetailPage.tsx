@@ -43,8 +43,12 @@ export function ProductoDetailPage() {
 
   return (
     <article className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2">
-      <div className="overflow-hidden rounded-md border border-line bg-ink">
-        <img src={product.imageUrl} alt="" className="h-full max-h-[480px] w-full object-cover" />
+      <div className="overflow-hidden rounded-md border border-line bg-steel">
+        <img
+          src={product.imageUrl}
+          alt={product.name}
+          className="aspect-[4/3] h-auto w-full object-cover"
+        />
       </div>
       <div>
         <p className="text-xs uppercase tracking-[0.2em] text-amber">{product.brand}</p>

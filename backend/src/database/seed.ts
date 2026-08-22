@@ -18,7 +18,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 42990,
         category: ServiceCategory.LUBRICACION,
         featured: true,
-        imageUrl: img('photo-1486262715619-67b85e0b08d3'),
+        imageUrl: '/images/cambio-aceite.jpg',
         includes: [
           'Aceite según especificación del vehículo',
           'Filtro de aceite nuevo',
@@ -129,7 +129,7 @@ const serviceRows = (): Partial<Service>[] => [
         priceFrom: 28000,
         category: ServiceCategory.NEUMATICOS,
         featured: true,
-        imageUrl: img('photo-1558618666-fcd25c85cd64'),
+        imageUrl: '/images/balanceo-neumaticos.avif',
         includes: [
           'Montaje por rueda',
           'Válvula nueva (si se requiere)',
@@ -206,7 +206,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 42990,
         featured: true,
         inStock: true,
-        imageUrl: img('photo-1625047509168-a7026f36de04', 900),
+        imageUrl: '/images/mobil1.png',
         specs: { viscosidad: '5W-30', presentacion: '4 L', tipo: 'Sintético' },
       },
       {
@@ -222,7 +222,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 39990,
         featured: true,
         inStock: true,
-        imageUrl: img('photo-1486262715619-67b85e0b08d3', 900),
+        imageUrl: '/images/shellhelix.avif',
         specs: { viscosidad: '5W-40', presentacion: '4 L', tipo: 'Sintético' },
       },
       {
@@ -238,7 +238,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 44990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1625047509168-a7026f36de04', 900),
+        imageUrl: '/images/castrol.webp',
         specs: { viscosidad: '5W-30', presentacion: '4 L', tipo: 'Sintético' },
       },
       {
@@ -253,7 +253,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 41990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1486262715619-67b85e0b08d3', 800),
+        imageUrl: '/images/valvoline.avif',
         specs: { viscosidad: '0W-20', presentacion: '4 L', tipo: 'Sintético' },
       },
       {
@@ -269,7 +269,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 8990,
         featured: true,
         inStock: true,
-        imageUrl: img('photo-1619642751034-765dfdf7c58e', 900),
+        imageUrl: '/images/mannfilter.png',
         specs: { tipo: 'Aceite', origen: 'Equivalente OE' },
       },
       {
@@ -284,7 +284,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 12990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1625047509168-a7026f36de04', 800),
+        imageUrl: '/images/filtroairebosch.jpg',
         specs: { tipo: 'Aire' },
       },
       {
@@ -300,7 +300,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 14990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1619642751034-765dfdf7c58e', 800),
+        imageUrl: '/images/filtro-cabina-bosch.jpg',
         specs: { tipo: 'Cabina' },
       },
       {
@@ -316,7 +316,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 119990,
         featured: true,
         inStock: true,
-        imageUrl: img('photo-1558618666-fcd25c85cd64', 1000),
+        imageUrl: '/images/michelin.jpg',
         specs: { medida: '205/55 R16', indice: '91V', uso: 'Touring' },
       },
       {
@@ -332,7 +332,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 139990,
         featured: true,
         inStock: true,
-        imageUrl: img('photo-1552519507-da3b142c6e3d', 1000),
+        imageUrl: '/images/bridgestone.webp',
         specs: { medida: '215/55 R17', uso: 'Touring' },
       },
       {
@@ -347,7 +347,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 149990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1558618666-fcd25c85cd64', 1100),
+        imageUrl: '/images/continental.webp',
         specs: { medida: '225/45 R17', uso: 'Performance' },
       },
       {
@@ -362,7 +362,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 79990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1552519507-da3b142c6e3d', 900),
+        imageUrl: '/images/cinturato-pirelli.jpg',
         specs: { medida: '185/65 R15', uso: 'Urbano' },
       },
       {
@@ -376,7 +376,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 84990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1558618666-fcd25c85cd64', 900),
+        imageUrl: '/images/neumatico-goodyear.jpg',
         specs: { medida: '195/65 R15', uso: 'Touring' },
       },
       {
@@ -391,7 +391,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 45990,
         featured: true,
         inStock: true,
-        imageUrl: img('photo-1486262715619-67b85e0b08d3', 1000),
+        imageUrl: '/images/pastillas-brembo.jpg',
         specs: { eje: 'Delantero', tipo: 'Pastillas' },
       },
       {
@@ -406,7 +406,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 89990,
         featured: true,
         inStock: true,
-        imageUrl: img('photo-1619642751034-765dfdf7c58e', 1000),
+        imageUrl: '/images/bosch.webp',
         specs: { voltaje: '12V', linea: 'S4' },
       },
       {
@@ -420,7 +420,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 32990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1625047509168-a7026f36de04', 900),
+        imageUrl: '/images/bujias-iridium.webp',
         specs: { tipo: 'Iridium', unidad: 'Juego' },
       },
       {
@@ -435,7 +435,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 129990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1625047509168-a7026f36de04', 1000),
+        imageUrl: '/images/amortiguadores-monroe.webp',
         specs: { unidad: 'Par', marca: 'Monroe' },
       },
       {
@@ -450,7 +450,7 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 159990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1486262715619-67b85e0b08d3', 1000),
+        imageUrl: '/images/kit-gates.webp',
         specs: { tipo: 'Kit distribución' },
       },
       {
@@ -465,10 +465,47 @@ const productRows = (): Partial<Product>[] => [
         priceFrom: 24990,
         featured: false,
         inStock: true,
-        imageUrl: img('photo-1619642751034-765dfdf7c58e', 800),
+        imageUrl: '/images/limpiaparabrisas-bosch.jpg',
         specs: { unidad: 'Par', tipo: 'Plano' },
       },
     ];
+
+const localServiceImages: Record<string, string> = {
+  'cambio-aceite-filtro': '/images/cambio-aceite.jpg',
+  'montaje-balanceo': '/images/balanceo-neumaticos.avif',
+};
+
+const localProductImages: Record<string, string> = {
+  'mobil-1-5w30': '/images/mobil1.png',
+  'shell-helix-ultra-5w40': '/images/shellhelix.avif',
+  'castrol-edge-5w30': '/images/castrol.webp',
+  'valvoline-synpower-0w20': '/images/valvoline.avif',
+  'filtro-aceite-mann': '/images/mannfilter.png',
+  'filtro-aire-bosch': '/images/filtroairebosch.jpg',
+  'filtro-cabina-bosch': '/images/filtro-cabina-bosch.jpg',
+  'michelin-primacy-4-205-55-r16': '/images/michelin.jpg',
+  'bridgestone-turanza-215-55-r17': '/images/bridgestone.webp',
+  'continental-ultracontact-225-45-r17': '/images/continental.webp',
+  'pirelli-cinturato-185-65-r15': '/images/cinturato-pirelli.jpg',
+  'goodyear-efficientgrip-195-65-r15': '/images/neumatico-goodyear.jpg',
+  'pastillas-brembo-delanteras': '/images/pastillas-brembo.jpg',
+  'bateria-bosch-s4': '/images/bosch.webp',
+  'bujias-ngk-laser': '/images/bujias-iridium.webp',
+  'amortiguadores-monroe-par': '/images/amortiguadores-monroe.webp',
+  'kit-distribucion-gates': '/images/kit-gates.webp',
+  'wiper-bosch-aerotwin': '/images/limpiaparabrisas-bosch.jpg',
+};
+
+async function syncLocalCatalogImages(dataSource: DataSource): Promise<void> {
+  const services = dataSource.getRepository(Service);
+  const products = dataSource.getRepository(Product);
+  for (const [slug, imageUrl] of Object.entries(localServiceImages)) {
+    await services.update({ slug }, { imageUrl });
+  }
+  for (const [slug, imageUrl] of Object.entries(localProductImages)) {
+    await products.update({ slug }, { imageUrl });
+  }
+}
 
 export async function seedIfEmpty(dataSource: DataSource): Promise<void> {
   const services = dataSource.getRepository(Service);
@@ -476,6 +513,7 @@ export async function seedIfEmpty(dataSource: DataSource): Promise<void> {
   const count = await services.count();
   if (count > 0) {
     console.log('Base local ya tiene datos; se omite el seed.');
+    await syncLocalCatalogImages(dataSource);
     return;
   }
   console.log('Sembrando catálogo local (SQLite)…');
