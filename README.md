@@ -161,8 +161,8 @@ Edita `backend/.env` (después de copiarlo desde `.env.example`).
 | Variable | Qué es | Ejemplo |
 | --- | --- | --- |
 | `SITE_NAME` | Nombre del negocio | `Lubricentro Meza` |
-| `SITE_PHONE` | Teléfono visible en la web | `+56 9 7154 3327` |
-| `SITE_WHATSAPP` | Número que **recibe** los mensajes (solo dígitos, con código país) | `56971543327` |
+| `SITE_PHONE` | Teléfono visible en la web | `+56 9 8765 4321` |
+| `SITE_WHATSAPP` | Número que **recibe** los mensajes (solo dígitos, con código país) | `56987654321` |
 | `SITE_EMAIL` | Correo de contacto | `contacto@lubricentromeza.cl` |
 | `SITE_ADDRESS` | Dirección | `Av. San Miguel 2450` |
 | `SITE_CITY` | Ciudad | `Talca` |
@@ -173,7 +173,7 @@ Edita `backend/.env` (después de copiarlo desde `.env.example`).
 | `SQLITE_PATH` | Ruta del archivo SQLite | `./data/lubricentro.sqlite` |
 
 **Importante sobre WhatsApp:**  
-`SITE_WHATSAPP` debe ir **sin** `+` ni espacios. Chile: `56` + número (ej. `56971543327`).
+`SITE_WHATSAPP` debe ir **sin** `+` ni espacios. Chile: `56` + número (ej. `56987654321`).
 
 Después de cambiar el `.env`, **reinicia el backend** (Ctrl+C y otra vez `npm run dev`) para que tome los valores nuevos.
 
