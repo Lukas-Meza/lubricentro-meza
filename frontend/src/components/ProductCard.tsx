@@ -14,8 +14,9 @@ const categoryLabel: Record<Product['category'], string> = {
 export function ProductCard({ product }: { product: Product }) {
   const { addProduct, items } = useQuote();
   const added = items.some((item) => item.id === product.id);
-  // Lubricantes van con object-contain; el resto se recorta un poco para llenar el marco
-  const isLubricant = product.category === 'LUBRICANTE';
+  // Lubricantes y baterias: enteros sin zoom. El resto se recorta un poco.
+  const fitContain =
+    product.category === 'LUBRICANTE' || product.category === 'BATERIA';
 
   return (
     <article className="card group">
@@ -23,7 +24,7 @@ export function ProductCard({ product }: { product: Product }) {
         to={`/productos/${product.slug}`}
         className={cn(
           'card-media',
-          isLubricant ? 'card-media--lubricant' : 'card-media--product',
+          fitContain ? 'card-media--lubricant' : 'card-media--product',
         )}
       >
         <img src={product.imageUrl} alt={product.name} className="card-img" />

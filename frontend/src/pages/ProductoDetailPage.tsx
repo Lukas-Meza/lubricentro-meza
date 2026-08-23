@@ -41,17 +41,19 @@ export function ProductoDetailPage() {
 
   const added = items.some((item) => item.id === product.id);
   const specs = product.specs ?? {};
-  const isLubricant = product.category === 'LUBRICANTE';
+  // Misma idea que en la card: baterias sin zoom para que se lea bien la foto
+  const fitContain =
+    product.category === 'LUBRICANTE' || product.category === 'BATERIA';
 
   return (
     <article className="container-page detail-layout detail-layout--product section-y-sm">
-      <div className={cn('media-frame', isLubricant ? 'bg-ink' : 'bg-white')}>
+      <div className={cn('media-frame', fitContain ? 'bg-ink' : 'bg-white')}>
         <img
           src={product.imageUrl}
           alt={product.name}
           className={cn(
             'product-detail-media',
-            isLubricant && 'product-detail-media--lubricant',
+            fitContain && 'product-detail-media--lubricant',
           )}
         />
       </div>
